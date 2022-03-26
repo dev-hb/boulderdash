@@ -57,6 +57,7 @@ export class Player {
         // vérifier la collision avec les objets
     }
 
+    // vérifier la collision sur les mûrs par rapport aux nouvelles coordonnées du joueur
     checkWallsCollisions(newX, newY){
         let is_collised = false;
         this.map.getLevelSettings().walls.map((wall) => {
