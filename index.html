@@ -14,18 +14,30 @@
         <div class="boulderdash-wrraper">
             <!-- entête de jeu pour le score et les stats -->
             <div class="boulderdash-header">
-
+                <div class="container">
+                    <img src="assets/images/gem.gif" width="40" height="40">
+                    <span class="stats_values" id="stats_gems_count"></span>
+                </div>
             </div>
-            <!-- Espace de jeu 1024x768px par défaut -->
+            <!-- Espace de jeu 1200x800 par défaut -->
             <div class="boulderdash-field" id="field">
                 <!-- Le joueur -->
                 <img src="https://c.tenor.com/0TEr3iPW8ZIAAAAC/rockford-boulder-dash.gif"
                 id="player" draggable="false" />
             </div>
         </div>
+        <div class="gameover" id="over">
+            <h1>Game Over</h1>
+        </div>
+        <div class="splashscreen" id="splashscreen">
+            <h1>Boulder Dash</h1>
+        </div>
+        <div id="soundtracks"></div>
     </div>
     
 
+    <script src="assets/js/commons.js" type="module"></script>
+    <script src="assets/js/object.js" type="module"></script>
     <script src="assets/js/field.js" type="module"></script>
     <script src="assets/js/map.js" type="module"></script>
     <script src="assets/js/player.js" type="module"></script>

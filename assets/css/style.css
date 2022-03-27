@@ -3,15 +3,30 @@
     margin-left: 60px;
 }
 
-.boulderdash-wrapper {
-    border: 2px solid #000;
+.boulderdash-wrraper {
     overflow: hidden;
+    position: absolute;
 }
 
 .boulderdash-header {
     height: 50px;
     background-color: yellow;
-    width: 1200px;
+    width: 1280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.boulderdash-header .container {
+    display: flex;
+    flex-direction: row;    
+    column-gap: 10px;
+}
+
+.boulderdash-header .stats_values {
+    font-size: 36px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
 }
 
 .boulderdash-field > * {
@@ -21,8 +36,8 @@
 .boulderdash-field {
     background-color: #000;
     background-image: url('../images/space.gif');
-    width: 1200px;
-    height: 800px;
+    width: 1280px;
+    height: 640px;
 }
 
 .boulderdash-field #player {
@@ -30,12 +45,46 @@
     height: 40px;
 }
 
-.boulderdash .boulderdash-field .wall {
+.boulderdash-field .objects {
     width: 40px;
     height: 40px;
     background-color: #f2f2f2;
-    background-image: url('../images/wall.gif');
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
+}
+
+.boulderdash .boulderdash-field .wall {
+    background-image: url('../images/wall.gif');
+}
+.boulderdash .boulderdash-field .dirt {
+    background-image: url('../images/dirt.gif');
+}
+.boulderdash .boulderdash-field .gem {
+    background-image: url('../images/gem.gif');
+}
+.boulderdash .boulderdash-field .rock {
+    background-image: url('../images/rock.gif');
+}
+
+
+
+
+.splashscreen {
+    width: 1280px;
+    height: 690px;
+}
+
+.gameover {
+    width: 1280px;
+    height: 690px;
+    position: absolute;
+    background-color: grey;
+    text-align: center;
+    display: none;
+}
+
+#soundtracks, #soundtracks > * {
+    display: none;
+    opacity: 0;
 }
