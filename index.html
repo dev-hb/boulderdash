@@ -18,6 +18,7 @@
                     <img src="assets/images/gem.gif" width="40" height="40">
                     <span class="stats_values" id="stats_gems_count"></span>
                 </div>
+                <span id="link_pause">PAUSE</span>
             </div>
             <!-- Espace de jeu 1200x800 par défaut -->
             <div class="boulderdash-field" id="field">
@@ -26,17 +27,40 @@
                 id="player" draggable="false" />
             </div>
         </div>
-        <div class="gameover" id="over">
+        <div class="splashscreen" id="over">
             <h1>Game Over</h1>
         </div>
         <div class="splashscreen" id="splashscreen">
             <h1>Boulder Dash</h1>
+            <h4>Par EL AMRI</h4>
+
+            <div class="actions">
+                <h3 id="link_resume">Dépause</h3>
+                <h3 id="link_startgame">Nouvelle partie</h3>
+                <h3 id="link_levelbuilder">Charger un niveau</h3>
+                <h3 id="link_levels">Sélectionner un niveau</h3>
+                <h3 id="link_howtoplay">Commen jouer ?</h3>
+                <h3 id="link_quit">Quitter la partie</h3>
+            </div>
         </div>
+        
+        <div class="splashscreen" id="levelselector">
+            <h1>Sélectionner un niveu</h1>
+            <h4 id="back_to_splash">&larr; Retour</h4>
+
+            <div class="levels">
+                <span class="level" id="level-1">1</span>
+                <span class="level" id="level-2">2</span>
+                <span class="level" id="level-3">3</span>
+            </div>
+        </div>
+
         <div id="soundtracks"></div>
     </div>
     
 
     <script src="assets/js/commons.js" type="module"></script>
+    <script src="assets/js/levelbuilder.js" type="module"></script>
     <script src="assets/js/object.js" type="module"></script>
     <script src="assets/js/field.js" type="module"></script>
     <script src="assets/js/map.js" type="module"></script>

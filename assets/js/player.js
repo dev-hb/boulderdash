@@ -3,15 +3,15 @@ import Commons from "./commons.js";
 export class Player {
 
     // Création de joueur
-    constructor(context, field, map, objId){
+    constructor(context, field, map, objId, startX=0, startY=0){
         // objets globales
         this.context = context; // le context de jeu, l'objet global BoulderDash
         this.field = field; // l'espace de jeu en cours
         this.map = map; // les différente objets de l'espace
         // Caractériqtiques de joueur
         this.object = document.getElementById(objId); // l'objet DOM de joueur dans HTML (balise img)
-        this.x = 0; // coordonnée x de joueur
-        this.y = 0; // coordonnée y de joueur
+        this.x = startX; // coordonnée x de joueur
+        this.y = startY; // coordonnée y de joueur
         this.map.setPlayerCoords(this.x, this.y);
         this.player_step_shift = Commons.getMapCoeff(); // nombre de pixels de mouvement pour une étape
     }
@@ -20,37 +20,36 @@ export class Player {
     loadEvents(){
         window.document.addEventListener('keydown', (e) => {
             let code = e.keyCode; // récupérer le code de caractère clavier saisi
-            console.log(code)
             let x = this.x, y = this.y, obj; // récupérer les coordonnées
             switch(code){ // vérifier les nouveaux coordonnées de joueur et les collisions avec les mûrs et limites d'espace de jeu
-                case 90: if(this.y >= this.player_step_shift){
+                case 38: if(this.y >= this.player_step_shift){
                     y -= this.player_step_shift;
                     if(this.checkWallsCollisions(x, y)) return false;
                 } break;
-                case 83: if(this.y <= this.field.height - this.player_step_shift*2){
+                case 40: if(this.y <= this.field.height - this.player_step_shift*2){
                     y += this.player_step_shift;
                     if(this.checkWallsCollisions(x, y)) return false;
                 } break;
-                case 81: if(this.x >= this.player_step_shift){
+                case 37: if(this.x >= this.player_step_shift){
                     x -= this.player_step_shift;
                     obj = this.checkWallsCollisions(x, y);
                     if(obj){
                         // boucher le roche si la case suivante est vide
                         if(obj.type == "rocks"){
-                            if(this.existsObject(x, y) === undefined){
+                            if(this.existsObject(x, y, 1) === undefined){
                                 --obj.obj.x;
                                 obj.obj.getDOM().style.marginLeft = obj.obj.x * Commons.getMapCoeff();
                             } else return false;
                         }else return false;
                     }
                 } break;
-                case 68: if(this.x <= this.field.width - this.player_step_shift*2) {
+                case 39: if(this.x <= this.field.width - this.player_step_shift*2) {
                     x += this.player_step_shift;
                     obj = this.checkWallsCollisions(x, y);
                     if(obj){
                         // boucher le roche si la case suivante est vide
                         if(obj.type == "rocks"){
-                            if(this.existsObject(x, y) === undefined){
+                            if(this.existsObject(x, y, 2) === undefined){
                                 ++obj.obj.x;
                                 obj.obj.getDOM().style.marginLeft = obj.obj.x * Commons.getMapCoeff();
                             } else return false;
@@ -117,8 +116,9 @@ export class Player {
 
 
     // vérifier si une case est vide
-    existsObject = (x, y) => {
-        x = (x - Commons.getMapCoeff()) / Commons.getMapCoeff();
+    existsObject = (x, y, dir = 1) => {
+        if(dir === 1) x = (x - Commons.getMapCoeff()) / Commons.getMapCoeff();
+        else  x = (x + Commons.getMapCoeff()) / Commons.getMapCoeff();
         y = y / Commons.getMapCoeff();
         if(x <= 0 || y <= 0 || x >= this.field.width || y >= this.field.height) return undefined;
         let gems_and_rocks = this.map.currentSettings.gems.concat(this.map.currentSettings.rocks)
