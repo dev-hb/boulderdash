@@ -7,10 +7,11 @@ import {LevelBuilder} from './assets/js/levelbuilder.js';
 
 class BoulderDash {
     // nouvelle partie avec un niveau
-    constructor(level){
+    constructor(level, map = undefined){
         // objets globales
         this.field = new Field('field');
-        this.map = new Map(this.field, level);
+        if(map == undefined) this.map = new Map(this.field, level);
+        else this.map = map;
         this.player = new Player(this, this.field, this.map, "player");
         this.over = document.getElementById('over');
 
@@ -60,8 +61,11 @@ let endGame = () => {
 // Evenement commencer un nouveau jeu
 document.querySelector("#link_startgame").addEventListener('click', startNewGame);
 // retour vers la page d'accueil
-document.querySelector("#back_to_splash").addEventListener('click', () => {
-    document.getElementById('levelselector').style.display = "none";
+Array.prototype.slice.call(document.getElementsByClassName("back_to_splash")).map((link) => {
+    link.addEventListener('click', () => {
+        document.getElementById('levelselector').style.display = "none";
+        document.getElementById('howtoplay').style.display = "none";
+    });
 });
 // Page des niveau par défaut
 document.querySelector("#link_levels").addEventListener('click', () => {
@@ -78,8 +82,23 @@ Array.prototype.slice.call(document.getElementsByClassName("level")).map((level)
 
 // Charger un niveau
 document.querySelector('#link_levelbuilder').addEventListener('click', () => {
-    let builder = new LevelBuilder();
-    builder.build();
+    document.getElementById('file').click();
+});
+document.getElementById('file').addEventListener('change', function() {
+    var fr=new FileReader();
+    fr.onload=function(){
+        let builder = new LevelBuilder(4);
+        builder.setMap(fr.result);
+        let map = new Map(new Field('field'), 4, builder.build());
+        game = new BoulderDash(4, map);
+        document.getElementById('splashscreen').style.display = "none";
+    }
+    fr.readAsText(this.files[0]);
+})
+
+// Commen jouer
+document.querySelector('#link_howtoplay').addEventListener('click', () => {
+    document.getElementById('howtoplay').style.display = "flex";
 });
 
 // Pause le jeu

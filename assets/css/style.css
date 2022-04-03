@@ -103,7 +103,7 @@
     cursor: pointer;
 }
 #levelselector {display: none;}
-#back_to_splash {cursor: pointer;}
+.back_to_splash {cursor: pointer;}
 .splashscreen .levels {margin-top: 30px;}
 .splashscreen .levels .level {
     border: 2px solid #fff;
@@ -121,6 +121,8 @@
     opacity: 1;
     transition: all .2s ease;
 }
+#howtoplay {display: none;}
+#file { display: none;}
 
 #over {display: none;}
 

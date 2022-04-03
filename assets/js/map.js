@@ -3,7 +3,7 @@ import { FieldObject } from "./object.js";
 
 export class Map {
 
-    constructor(field, level){
+    constructor(field, level, settings = undefined){
         this.field = field;
         // attributs joueur
         this.player_x = null;
@@ -12,9 +12,10 @@ export class Map {
         this.map_coeff = Commons.getMapCoeff(); // taille d'un carré sur le map
         // paramêtres de map
         this.level = level;
-        this.currentSettings = this.getLevelSettings();
+        if(settings == undefined) this.currentSettings = this.getLevelSettings();
+        else this.currentSettings = settings;
         // elements avec la gravité
-        this.gravity_cycle = 180; // en millisecond
+        this.gravity_cycle = 100; // en millisecond
         this.gravity_objects = []; // DOM objets avec gravité
         // dessiner les objets
         this.draw();

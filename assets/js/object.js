@@ -15,8 +15,10 @@ export class FieldObject {
 
     // modifier les coordonnées un objet de l'espace de jeu
     updateObjectCoords(newCoords){
-        this.map.currentSettings[this.type][this.key].x = newCoords[0] / Commons.getMapCoeff();
-        this.map.currentSettings[this.type][this.key].y = newCoords[1] / Commons.getMapCoeff();
+        if(this.map.currentSettings[this.type][this.key] != undefined){
+            this.map.currentSettings[this.type][this.key].x = newCoords[0] / Commons.getMapCoeff();
+            this.map.currentSettings[this.type][this.key].y = newCoords[1] / Commons.getMapCoeff();
+        }
     }
 
     // get DOM element

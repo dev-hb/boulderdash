@@ -37,7 +37,9 @@
             <div class="actions">
                 <h3 id="link_resume">Dépause</h3>
                 <h3 id="link_startgame">Nouvelle partie</h3>
-                <h3 id="link_levelbuilder">Charger un niveau</h3>
+                <h3 id="link_levelbuilder">Charger un niveau
+                    <input type="file" name="file" id="file" class="file" accept="*.txt">
+                </h3>
                 <h3 id="link_levels">Sélectionner un niveau</h3>
                 <h3 id="link_howtoplay">Commen jouer ?</h3>
                 <h3 id="link_quit">Quitter la partie</h3>
@@ -46,13 +48,18 @@
         
         <div class="splashscreen" id="levelselector">
             <h1>Sélectionner un niveu</h1>
-            <h4 id="back_to_splash">&larr; Retour</h4>
+            <h4 class="back_to_splash">&larr; Retour</h4>
 
             <div class="levels">
                 <span class="level" id="level-1">1</span>
                 <span class="level" id="level-2">2</span>
                 <span class="level" id="level-3">3</span>
             </div>
+        </div>
+
+        <div class="splashscreen" id="howtoplay">
+            <h1>Comment jouer ?</h1>
+            <h4 class="back_to_splash">&larr; Retour</h4>
         </div>
 
         <div id="soundtracks"></div>

@@ -1,12 +1,14 @@
 export class LevelBuilder {
 
-    constructor(game, levelId){
+    constructor(levelId){
         this.level = {
             'level': levelId, 'walls' : [], 'dirts' : [],
-            'gems' : [], 'rocks' : []
+            'gems' : [], 'rocks' : [], 'empties' : []
         };
-        this.sheet = "GWWWWWWWWWWWWWWWWWWW\nDDDDDDDDDGGGGGGDDDDDDWWWW";
+        this.sheet = "";
     }
+
+    setMap(map){ this.sheet = map; }
 
     // créer un niveau à partir de fichier texte map
     build(){
@@ -17,16 +19,11 @@ export class LevelBuilder {
                     case 'D': this.level['dirts'].push([rowKey, colKey]); break;
                     case 'G': this.level['gems'].push([rowKey, colKey]); break;
                     case 'R': this.level['rocks'].push([rowKey, colKey]); break;
-                    default: console("Caractères non reconnu ignoré dans le fichier séléctionné!!");
+                    case 'E': this.level['empties'].push([rowKey, colKey]); break;
+                    default: console.log("Caractères non reconnu ignoré dans le fichier séléctionné!!");
                 }
             });
         });
-
-        console.log(this.level)
-        return this;
-    }
-
-    getLevel(){
         return this.level;
     }
 
